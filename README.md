@@ -1,3 +1,12 @@
+Name - Diptanshu Saurav
+
+College - Indian institute of Technology, Patna
+
+Department - Metallurgical and Materials Engineering
+
+<img width="1178" height="581" alt="image" src="https://github.com/user-attachments/assets/96b9494c-77bd-4f3d-88cf-0ba345753986" />
+<img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/30f04e51-7abb-46e2-92aa-c49d3bbacad2" />
+<img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/df473f7d-4691-4c45-a2e1-5ef7fd11886f" />
 # AI Mail Reply Agent
 
 > Automate routine email replies with agentic LLM workflows while preserving user control, privacy, and auditability.
