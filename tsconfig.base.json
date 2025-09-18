@@ -15,6 +15,7 @@
       "@db/*": ["packages/db/src/*"],
       "@llm/*": ["packages/llm/src/*"],
       "@queue/*": ["packages/queue/src/*"],
+      "@queue/jobs": ["packages/queue/src/jobs.ts"],
       "@agents/*": ["packages/agents/src/*"]
     }
   }
