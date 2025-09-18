@@ -1,0 +1,17 @@
+{
+  "name": "@mail-ai/db",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@prisma/client": "5.16.1"
+  },
+  "devDependencies": {
+    "prisma": "5.16.1"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "mail-ai-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "npm@10.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w apps/api && npm run build -w apps/web && npm run build -w apps/worker",
+    "build:api": "npm run build -w apps/api",
+    "build:web": "npm run build -w apps/web",
+    "build:worker": "npm run build -w apps/worker",
+    "dev": "concurrently \"npm:dev:api\" \"npm:dev:web\" \"npm:dev:worker\"",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "dev:worker": "npm run dev -w apps/worker",
+  "seed": "node -r ts-node/register -r tsconfig-paths/register scripts/seed.ts",
+    "prisma:generate": "npm run prisma:generate -w packages/db",
+    "prisma:migrate": "npm run prisma:migrate -w packages/db",
+  "prisma:studio": "prisma studio --schema packages/db/prisma/schema.prisma",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "db:reset": "npm run prisma:migrate -- --reset -w packages/db",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc -p tsconfig.base.json --noEmit",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "concurrently": "8.2.2",
+    "eslint": "8.57.0",
+    "prettier": "3.2.5",
+    "typescript": "5.4.5",
+    "husky": "9.0.11",
+  "ts-node": "10.9.2",
+  "tsconfig-paths": "4.2.0"
+    ,
+    "dotenv": "16.4.5"
+  }
+}

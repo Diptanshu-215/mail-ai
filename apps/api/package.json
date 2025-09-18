@@ -1,0 +1,32 @@
+{
+  "name": "@mail-ai/api",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+  "dev": "ts-node-dev --respawn -r tsconfig-paths/register src/dev-bootstrap.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js"
+  },
+  "dependencies": {
+    "express": "4.19.2",
+    "cors": "2.8.5",
+    "zod": "3.23.8",
+    "ws": "8.17.0",
+    "cookie-parser": "1.4.6",
+    "googleapis": "132.0.0",
+    "jsonwebtoken": "9.0.2",
+    "@mail-ai/core": "*",
+    "@mail-ai/agents": "*",
+    "@mail-ai/db": "*",
+    "@mail-ai/queue": "*"
+  },
+  "devDependencies": {
+    "ts-node-dev": "2.0.0",
+    "@types/express": "4.17.21",
+    "@types/cors": "2.8.17",
+    "@types/ws": "8.5.10",
+    "@types/cookie-parser": "1.4.3",
+    "@types/jsonwebtoken": "9.0.6"
+  }
+}

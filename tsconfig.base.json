@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "ES2022"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["packages/core/src/*"],
+      "@db/*": ["packages/db/src/*"],
+      "@llm/*": ["packages/llm/src/*"],
+      "@queue/*": ["packages/queue/src/*"],
+      "@agents/*": ["packages/agents/src/*"]
+    }
+  }
+}

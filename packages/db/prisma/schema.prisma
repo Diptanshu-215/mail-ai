@@ -1,0 +1,91 @@
+// Prisma schema derived from README data model
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String?
+  provider        String
+  accountId       String?
+  encryptedTokens String
+  defaultTone     String    @default("friendly")
+  autoReply       Boolean   @default(false)
+  usageDrafts     Int       @default(0)
+  createdAt       DateTime  @default(now())
+  emails          EmailMeta[]
+  drafts          Draft[]
+  ragEntries      RAGEntry[]
+}
+
+model EmailMeta {
+  id                  String    @id @default(cuid())
+  userId              String
+  messageId           String    @unique
+  threadId            String
+  sender              String
+  recipients          String
+  subject             String
+  snippet             String?
+  labels              Json?
+  classificationLabel String?
+  classificationTags  Json?
+  score               Float?
+  fetchedAt           DateTime  @default(now())
+  processedAt         DateTime?
+  repliedAt           DateTime?
+  drafts              Draft[]
+  user                User      @relation(fields: [userId], references: [id])
+
+  @@index([userId, classificationLabel])
+}
+
+model Draft {
+  id            String    @id @default(cuid())
+  emailId       String
+  userId        String
+  tone          String
+  draftText     String
+  optimizedText String?
+  modelName     String
+  tokensUsed    Int?
+  status        String    @default("pending")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  scheduledFor  DateTime?
+  email         EmailMeta @relation(fields: [emailId], references: [id])
+  user          User      @relation(fields: [userId], references: [id])
+}
+
+model AgentLog {
+  id            String   @id @default(cuid())
+  jobId         String
+  agentType     String
+  action        String?
+  inputSummary  String?
+  outputSummary String?
+  durationMs    Int?
+  status        String
+  timestamp     DateTime @default(now())
+  meta          Json?
+
+  @@index([agentType, status])
+}
+
+model RAGEntry {
+  id              String   @id @default(cuid())
+  userId          String
+  title           String
+  text            String
+  sourceMessageId String?
+  tags            Json?
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id])
+}

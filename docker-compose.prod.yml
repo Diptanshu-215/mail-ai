@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  api:
+    build: ./apps/api
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      APP_ORIGIN: ${APP_ORIGIN}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_REDIRECT_URI: ${GOOGLE_REDIRECT_URI}
+      JWT_SECRET: ${JWT_SECRET}
+      SESSION_SECRET: ${SESSION_SECRET}
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: ${REDIS_URL}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN}
+      COOKIE_SECURE: ${COOKIE_SECURE}
+      COOKIE_SAME_SITE: ${COOKIE_SAME_SITE}
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+  worker:
+    build: ./apps/worker
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: ${REDIS_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      SESSION_SECRET: ${SESSION_SECRET}
+    depends_on:
+      - redis
+  web:
+    build: ./apps/web
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_ORIGIN: ${API_ORIGIN}
+      APP_ORIGIN: ${APP_ORIGIN}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save '' --appendonly no
+    ports:
+      - "6379:6379"
