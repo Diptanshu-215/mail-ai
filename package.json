@@ -25,8 +25,7 @@
     "db:reset": "npm run prisma:migrate -- --reset -w packages/db",
     "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc -p tsconfig.base.json --noEmit",
-    "format": "prettier --write .",
-    "prepare": "husky install"
+  "format": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "20.x",
